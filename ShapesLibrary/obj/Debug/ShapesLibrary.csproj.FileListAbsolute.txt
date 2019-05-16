@@ -1,0 +1,6 @@
+C:\Users\user\source\repos\AlmostPaint\ShapesLibrary\bin\Debug\ShapesLibrary.dll
+C:\Users\user\source\repos\AlmostPaint\ShapesLibrary\bin\Debug\ShapesLibrary.pdb
+C:\Users\user\source\repos\AlmostPaint\ShapesLibrary\obj\Debug\ShapesLibrary.csprojAssemblyReference.cache
+C:\Users\user\source\repos\AlmostPaint\ShapesLibrary\obj\Debug\ShapesLibrary.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\AlmostPaint\ShapesLibrary\obj\Debug\ShapesLibrary.dll
+C:\Users\user\source\repos\AlmostPaint\ShapesLibrary\obj\Debug\ShapesLibrary.pdb
