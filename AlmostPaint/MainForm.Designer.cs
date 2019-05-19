@@ -36,17 +36,20 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ShapesPanel = new System.Windows.Forms.Panel();
+            this.buttonPoint = new System.Windows.Forms.Button();
+            this.buttonEllipse = new System.Windows.Forms.Button();
+            this.buttonCircle = new System.Windows.Forms.Button();
+            this.buttonLine = new System.Windows.Forms.Button();
+            this.buttonSquare = new System.Windows.Forms.Button();
+            this.buttonRectangle = new System.Windows.Forms.Button();
+            this.buttonSelect = new System.Windows.Forms.Button();
             this.ControlsPanel = new System.Windows.Forms.Panel();
             this.SelectionLabel = new System.Windows.Forms.Label();
-            this.buttonSelect = new System.Windows.Forms.Button();
-            this.buttonRectangle = new System.Windows.Forms.Button();
-            this.buttonSquare = new System.Windows.Forms.Button();
-            this.buttonLine = new System.Windows.Forms.Button();
-            this.buttonCircle = new System.Windows.Forms.Button();
-            this.buttonEllipse = new System.Windows.Forms.Button();
-            this.buttonPoint = new System.Windows.Forms.Button();
+            this.buttonColor = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.menuStrip1.SuspendLayout();
             this.ShapesPanel.SuspendLayout();
+            this.ControlsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -100,72 +103,15 @@
             this.ShapesPanel.Size = new System.Drawing.Size(832, 42);
             this.ShapesPanel.TabIndex = 2;
             // 
-            // ControlsPanel
+            // buttonPoint
             // 
-            this.ControlsPanel.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.ControlsPanel.Location = new System.Drawing.Point(0, 64);
-            this.ControlsPanel.Name = "ControlsPanel";
-            this.ControlsPanel.Size = new System.Drawing.Size(44, 230);
-            this.ControlsPanel.TabIndex = 3;
-            // 
-            // SelectionLabel
-            // 
-            this.SelectionLabel.AutoSize = true;
-            this.SelectionLabel.Location = new System.Drawing.Point(9, 428);
-            this.SelectionLabel.Name = "SelectionLabel";
-            this.SelectionLabel.Size = new System.Drawing.Size(69, 13);
-            this.SelectionLabel.TabIndex = 4;
-            this.SelectionLabel.Text = "selection info";
-            // 
-            // buttonSelect
-            // 
-            this.buttonSelect.Location = new System.Drawing.Point(12, 4);
-            this.buttonSelect.Name = "buttonSelect";
-            this.buttonSelect.Size = new System.Drawing.Size(75, 31);
-            this.buttonSelect.TabIndex = 0;
-            this.buttonSelect.Text = "Select";
-            this.buttonSelect.UseVisualStyleBackColor = true;
-            this.buttonSelect.Click += new System.EventHandler(this.buttonSelect_Click);
-            // 
-            // buttonRectangle
-            // 
-            this.buttonRectangle.Location = new System.Drawing.Point(93, 4);
-            this.buttonRectangle.Name = "buttonRectangle";
-            this.buttonRectangle.Size = new System.Drawing.Size(75, 31);
-            this.buttonRectangle.TabIndex = 1;
-            this.buttonRectangle.Text = "Rectangle";
-            this.buttonRectangle.UseVisualStyleBackColor = true;
-            this.buttonRectangle.Click += new System.EventHandler(this.buttonRectangle_Click);
-            // 
-            // buttonSquare
-            // 
-            this.buttonSquare.Location = new System.Drawing.Point(174, 4);
-            this.buttonSquare.Name = "buttonSquare";
-            this.buttonSquare.Size = new System.Drawing.Size(75, 31);
-            this.buttonSquare.TabIndex = 2;
-            this.buttonSquare.Text = "Square";
-            this.buttonSquare.UseVisualStyleBackColor = true;
-            this.buttonSquare.Click += new System.EventHandler(this.buttonSquare_Click);
-            // 
-            // buttonLine
-            // 
-            this.buttonLine.Location = new System.Drawing.Point(255, 4);
-            this.buttonLine.Name = "buttonLine";
-            this.buttonLine.Size = new System.Drawing.Size(75, 31);
-            this.buttonLine.TabIndex = 3;
-            this.buttonLine.Text = "Line";
-            this.buttonLine.UseVisualStyleBackColor = true;
-            this.buttonLine.Click += new System.EventHandler(this.buttonLine_Click);
-            // 
-            // buttonCircle
-            // 
-            this.buttonCircle.Location = new System.Drawing.Point(336, 4);
-            this.buttonCircle.Name = "buttonCircle";
-            this.buttonCircle.Size = new System.Drawing.Size(75, 31);
-            this.buttonCircle.TabIndex = 4;
-            this.buttonCircle.Text = "Circle";
-            this.buttonCircle.UseVisualStyleBackColor = true;
-            this.buttonCircle.Click += new System.EventHandler(this.buttonCircle_Click);
+            this.buttonPoint.Location = new System.Drawing.Point(498, 4);
+            this.buttonPoint.Name = "buttonPoint";
+            this.buttonPoint.Size = new System.Drawing.Size(75, 31);
+            this.buttonPoint.TabIndex = 6;
+            this.buttonPoint.Text = "Point";
+            this.buttonPoint.UseVisualStyleBackColor = true;
+            this.buttonPoint.Click += new System.EventHandler(this.buttonPoint_Click);
             // 
             // buttonEllipse
             // 
@@ -177,15 +123,83 @@
             this.buttonEllipse.UseVisualStyleBackColor = true;
             this.buttonEllipse.Click += new System.EventHandler(this.buttonEllipse_Click);
             // 
-            // buttonPoint
+            // buttonCircle
             // 
-            this.buttonPoint.Location = new System.Drawing.Point(498, 4);
-            this.buttonPoint.Name = "buttonPoint";
-            this.buttonPoint.Size = new System.Drawing.Size(75, 31);
-            this.buttonPoint.TabIndex = 6;
-            this.buttonPoint.Text = "Point";
-            this.buttonPoint.UseVisualStyleBackColor = true;
-            this.buttonPoint.Click += new System.EventHandler(this.buttonPoint_Click);
+            this.buttonCircle.Location = new System.Drawing.Point(336, 4);
+            this.buttonCircle.Name = "buttonCircle";
+            this.buttonCircle.Size = new System.Drawing.Size(75, 31);
+            this.buttonCircle.TabIndex = 4;
+            this.buttonCircle.Text = "Circle";
+            this.buttonCircle.UseVisualStyleBackColor = true;
+            this.buttonCircle.Click += new System.EventHandler(this.buttonCircle_Click);
+            // 
+            // buttonLine
+            // 
+            this.buttonLine.Location = new System.Drawing.Point(255, 4);
+            this.buttonLine.Name = "buttonLine";
+            this.buttonLine.Size = new System.Drawing.Size(75, 31);
+            this.buttonLine.TabIndex = 3;
+            this.buttonLine.Text = "Line";
+            this.buttonLine.UseVisualStyleBackColor = true;
+            this.buttonLine.Click += new System.EventHandler(this.buttonLine_Click);
+            // 
+            // buttonSquare
+            // 
+            this.buttonSquare.Location = new System.Drawing.Point(174, 4);
+            this.buttonSquare.Name = "buttonSquare";
+            this.buttonSquare.Size = new System.Drawing.Size(75, 31);
+            this.buttonSquare.TabIndex = 2;
+            this.buttonSquare.Text = "Square";
+            this.buttonSquare.UseVisualStyleBackColor = true;
+            this.buttonSquare.Click += new System.EventHandler(this.buttonSquare_Click);
+            // 
+            // buttonRectangle
+            // 
+            this.buttonRectangle.Location = new System.Drawing.Point(93, 4);
+            this.buttonRectangle.Name = "buttonRectangle";
+            this.buttonRectangle.Size = new System.Drawing.Size(75, 31);
+            this.buttonRectangle.TabIndex = 1;
+            this.buttonRectangle.Text = "Rectangle";
+            this.buttonRectangle.UseVisualStyleBackColor = true;
+            this.buttonRectangle.Click += new System.EventHandler(this.buttonRectangle_Click);
+            // 
+            // buttonSelect
+            // 
+            this.buttonSelect.Location = new System.Drawing.Point(12, 4);
+            this.buttonSelect.Name = "buttonSelect";
+            this.buttonSelect.Size = new System.Drawing.Size(75, 31);
+            this.buttonSelect.TabIndex = 0;
+            this.buttonSelect.Text = "Select";
+            this.buttonSelect.UseVisualStyleBackColor = true;
+            this.buttonSelect.Click += new System.EventHandler(this.buttonSelect_Click);
+            // 
+            // ControlsPanel
+            // 
+            this.ControlsPanel.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.ControlsPanel.Controls.Add(this.buttonColor);
+            this.ControlsPanel.Location = new System.Drawing.Point(0, 64);
+            this.ControlsPanel.Name = "ControlsPanel";
+            this.ControlsPanel.Size = new System.Drawing.Size(87, 230);
+            this.ControlsPanel.TabIndex = 3;
+            // 
+            // SelectionLabel
+            // 
+            this.SelectionLabel.AutoSize = true;
+            this.SelectionLabel.Location = new System.Drawing.Point(9, 428);
+            this.SelectionLabel.Name = "SelectionLabel";
+            this.SelectionLabel.Size = new System.Drawing.Size(69, 13);
+            this.SelectionLabel.TabIndex = 4;
+            this.SelectionLabel.Text = "selection info";
+            // 
+            // buttonColor
+            // 
+            this.buttonColor.Location = new System.Drawing.Point(9, 11);
+            this.buttonColor.Name = "buttonColor";
+            this.buttonColor.Size = new System.Drawing.Size(69, 33);
+            this.buttonColor.TabIndex = 0;
+            this.buttonColor.Text = "Color";
+            this.buttonColor.UseVisualStyleBackColor = true;
+            this.buttonColor.Click += new System.EventHandler(this.buttonColor_Click);
             // 
             // PaintMainFrame
             // 
@@ -208,6 +222,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ShapesPanel.ResumeLayout(false);
+            this.ControlsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,6 +245,8 @@
         private System.Windows.Forms.Button buttonPoint;
         private System.Windows.Forms.Button buttonEllipse;
         private System.Windows.Forms.Button buttonCircle;
+        private System.Windows.Forms.Button buttonColor;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

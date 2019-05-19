@@ -10,10 +10,23 @@ namespace ShapesLibrary.Shapes
 {
     public class SquareShape : IDrawable, ITranslatable, IShape
     {
+        private Color _color;
         private int x;
         private int y;
         private int shapeWidth;
         private int shapeHeight;
+
+        public Color Color
+        {
+            get
+            {
+                return this._color;
+            }
+            set
+            {
+                this._color = value;
+            }
+        }
 
         public int X
         {
@@ -64,8 +77,9 @@ namespace ShapesLibrary.Shapes
         }
 
 
-        public SquareShape(int X, int Y, int width, int height)
+        public SquareShape(Color Color, int X, int Y, int width, int height)
         {
+            this.Color = Color;
             this.X = X;
             this.Y = Y;
             this.ShapeWidth = width;
@@ -74,15 +88,20 @@ namespace ShapesLibrary.Shapes
         }
 
 
-
         public bool ContainsPoint(int X, int Y)
         {
             return X > this.X && Y > this.Y && X < (this.X + this.ShapeWidth) && Y < (this.Y + this.ShapeHeight);
         }
 
+        public void ChangeColor(Color color)
+        {
+            this.Color = color;
+        }
+
         public void DrawMethod(Graphics g)
         {
             Pen p = new Pen(Color.Black);
+            g.FillRectangle(new SolidBrush(this.Color), X, Y, ShapeWidth, ShapeHeight);
             g.DrawRectangle(p, X, Y, ShapeWidth, ShapeHeight);
         }
 
@@ -92,5 +111,6 @@ namespace ShapesLibrary.Shapes
             this.Y += dY;
         }
 
+       
     }
 }

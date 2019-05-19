@@ -10,11 +10,23 @@ namespace ShapesLibrary.Shapes
 {
     public class EllipseShape : IDrawable, ITranslatable, IShape
     {
+        private Color _color;
         private int x;
         private int y;
         private int shapeWidth;
         private int shapeHeight;
 
+        public Color Color
+        {
+            get
+            {
+                return this._color;
+            }
+            set
+            {
+                this._color = value;
+            }
+        }
         public int X
         {
             get
@@ -64,15 +76,19 @@ namespace ShapesLibrary.Shapes
         }
 
 
-        public EllipseShape(int X, int Y, int width, int height)
+        public EllipseShape(Color Color, int X, int Y, int width, int height)
         {
+            this.Color = Color;
             this.X = X;
             this.Y = Y;
             this.ShapeWidth = width;
             this.ShapeHeight = height;
-
         }
 
+        public void ChangeColor(Color color)
+        {
+            this.Color = color;
+        }
 
 
         public bool ContainsPoint(int X, int Y)
@@ -83,6 +99,7 @@ namespace ShapesLibrary.Shapes
         public void DrawMethod(Graphics g)
         {
             Pen p = new Pen(Color.Black);
+            g.FillEllipse(new SolidBrush(this.Color), X, Y, ShapeWidth, ShapeHeight);
             g.DrawEllipse(p, X, Y, ShapeWidth, ShapeHeight);
         }
 

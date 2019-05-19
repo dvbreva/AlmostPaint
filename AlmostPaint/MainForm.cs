@@ -19,7 +19,9 @@ namespace AlmostPaint
         int Y;
         public int Selection = 1;
         public IDrawable SelectedItem = null;
+        public Color NewSelectedColor;
         public List<IDrawable> ItemsList = new List<IDrawable>();
+
 
         public PaintMainFrame()
         {
@@ -69,6 +71,12 @@ namespace AlmostPaint
             SelectionLabel.Text = "You have selected Point tool.";
         }
 
+        private void buttonColor_Click(object sender, EventArgs e)
+        {
+            Selection = 8;
+            SelectionLabel.Text = "You have selected to change color.";
+        }
+
         private void PaintMainFrame_MouseDown(object sender, MouseEventArgs e)
         {
             if (Selection == 1)
@@ -88,40 +96,69 @@ namespace AlmostPaint
 
             if (Selection == 2)
             {
-                RectangleShape item = new RectangleShape(e.X - 25, e.Y - 50, 150, 50);
+                RectangleShape item = new RectangleShape(NewSelectedColor, e.X - 25, e.Y - 50, 150, 50);
                 ItemsList.Add(item);
             }
 
             if(Selection == 3)
             {
-                SquareShape item = new SquareShape(e.X - 25, e.Y - 50, 100, 100);
+                SquareShape item = new SquareShape(NewSelectedColor, e.X - 25, e.Y - 50, 100, 100);
                 ItemsList.Add(item);
             }
 
             if(Selection == 4)
             {
-                LineShape item = new LineShape(e.X - 25, e.Y - 50, 100, 5);
+                LineShape item = new LineShape(NewSelectedColor, e.X - 25, e.Y - 50, 100, 5);
                 ItemsList.Add(item);
             }
 
             if(Selection == 5)
             {
-                CircleShape item = new CircleShape(e.X - 25, e.Y - 50, 100, 100);
+                CircleShape item = new CircleShape(NewSelectedColor, e.X - 25, e.Y - 50, 100, 100);
                 ItemsList.Add(item);
             }
 
             if(Selection == 6)
             {
-                EllipseShape item = new EllipseShape(e.X - 25, e.Y - 50, 150, 100);
+                EllipseShape item = new EllipseShape(NewSelectedColor, e.X - 25, e.Y - 50, 150, 100);
                 ItemsList.Add(item);
             }
 
             if(Selection == 7)
             {
-                PointShape item = new PointShape(e.X - 25, e.Y - 50, 10, 10);
+                PointShape item = new PointShape(NewSelectedColor, e.X - 25, e.Y - 50, 10, 10);
                 ItemsList.Add(item);
             }
 
+            if(Selection == 8)
+            {
+                // !somewhat working -> tova e kato si izbera cvqt da gi risuva s nego :D  
+                if (colorDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    NewSelectedColor = colorDialog1.Color;
+                }
+
+
+
+                foreach (IDrawable drawnItem in ItemsList)
+                {
+                    if (drawnItem is IShape)
+                    {
+                        if (((IShape)drawnItem).ContainsPoint(e.X, e.Y))
+                        {
+                            SelectedItem = drawnItem;
+                            if (colorDialog1.ShowDialog() == DialogResult.OK)
+                            {
+                                drawnItem.ChangeColor(colorDialog1.Color);
+                                //   items.Add(item);
+                                this.Refresh();
+                            }
+                        }
+                    }
+                    Selection = 1;
+                }
+                SelectedItem = null;
+            }
             this.Refresh();
         }
 
@@ -153,7 +190,7 @@ namespace AlmostPaint
             this.Y = e.Y;
         }
 
-      
+        
     }
 }
 
