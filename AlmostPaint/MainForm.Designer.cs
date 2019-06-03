@@ -32,6 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaintMainFrame));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newCanvasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -44,11 +47,15 @@
             this.buttonRectangle = new System.Windows.Forms.Button();
             this.buttonSelect = new System.Windows.Forms.Button();
             this.ControlsPanel = new System.Windows.Forms.Panel();
+            this.buttonResize = new System.Windows.Forms.Button();
+            this.buttonResize2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.buttonOpacity = new System.Windows.Forms.Button();
             this.buttonColor = new System.Windows.Forms.Button();
             this.SelectionLabel = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.buttonOpacity = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.ShapesPanel.SuspendLayout();
             this.ControlsPanel.SuspendLayout();
@@ -69,9 +76,34 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.newCanvasToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.openToolStripMenuItem.Text = "Open ";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // newCanvasToolStripMenuItem
+            // 
+            this.newCanvasToolStripMenuItem.Name = "newCanvasToolStripMenuItem";
+            this.newCanvasToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.newCanvasToolStripMenuItem.Text = "New canvas";
+            this.newCanvasToolStripMenuItem.Click += new System.EventHandler(this.newCanvasToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -178,19 +210,57 @@
             // ControlsPanel
             // 
             this.ControlsPanel.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.ControlsPanel.Controls.Add(this.buttonResize);
+            this.ControlsPanel.Controls.Add(this.buttonResize2);
             this.ControlsPanel.Controls.Add(this.textBox1);
             this.ControlsPanel.Controls.Add(this.buttonOpacity);
             this.ControlsPanel.Controls.Add(this.buttonColor);
             this.ControlsPanel.Location = new System.Drawing.Point(0, 64);
             this.ControlsPanel.Name = "ControlsPanel";
-            this.ControlsPanel.Size = new System.Drawing.Size(87, 230);
+            this.ControlsPanel.Size = new System.Drawing.Size(87, 361);
             this.ControlsPanel.TabIndex = 3;
+            // 
+            // buttonResize
+            // 
+            this.buttonResize.Location = new System.Drawing.Point(12, 128);
+            this.buttonResize.Name = "buttonResize";
+            this.buttonResize.Size = new System.Drawing.Size(69, 40);
+            this.buttonResize.TabIndex = 3;
+            this.buttonResize.Text = "Resize + ";
+            this.buttonResize.UseVisualStyleBackColor = true;
+            this.buttonResize.Click += new System.EventHandler(this.buttonResize_Click);
+            // 
+            // buttonResize2
+            // 
+            this.buttonResize2.Location = new System.Drawing.Point(12, 170);
+            this.buttonResize2.Name = "buttonResize2";
+            this.buttonResize2.Size = new System.Drawing.Size(69, 40);
+            this.buttonResize2.TabIndex = 4;
+            this.buttonResize2.Text = "Resize -";
+            this.buttonResize2.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 54);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(65, 20);
+            this.textBox1.TabIndex = 2;
+            // 
+            // buttonOpacity
+            // 
+            this.buttonOpacity.Location = new System.Drawing.Point(12, 82);
+            this.buttonOpacity.Name = "buttonOpacity";
+            this.buttonOpacity.Size = new System.Drawing.Size(69, 40);
+            this.buttonOpacity.TabIndex = 1;
+            this.buttonOpacity.Text = "Change Opacity";
+            this.buttonOpacity.UseVisualStyleBackColor = true;
+            this.buttonOpacity.Click += new System.EventHandler(this.buttonOpacity_Click);
             // 
             // buttonColor
             // 
-            this.buttonColor.Location = new System.Drawing.Point(9, 11);
+            this.buttonColor.Location = new System.Drawing.Point(12, 11);
             this.buttonColor.Name = "buttonColor";
-            this.buttonColor.Size = new System.Drawing.Size(69, 33);
+            this.buttonColor.Size = new System.Drawing.Size(69, 37);
             this.buttonColor.TabIndex = 0;
             this.buttonColor.Text = "Color";
             this.buttonColor.UseVisualStyleBackColor = true;
@@ -205,22 +275,10 @@
             this.SelectionLabel.TabIndex = 4;
             this.SelectionLabel.Text = "selection info";
             // 
-            // buttonOpacity
+            // openFileDialog1
             // 
-            this.buttonOpacity.Location = new System.Drawing.Point(9, 77);
-            this.buttonOpacity.Name = "buttonOpacity";
-            this.buttonOpacity.Size = new System.Drawing.Size(69, 40);
-            this.buttonOpacity.TabIndex = 1;
-            this.buttonOpacity.Text = "Change Opacity";
-            this.buttonOpacity.UseVisualStyleBackColor = true;
-            this.buttonOpacity.Click += new System.EventHandler(this.buttonOpacity_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 54);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(65, 20);
-            this.textBox1.TabIndex = 2;
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // PaintMainFrame
             // 
@@ -271,6 +329,13 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button buttonOpacity;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newCanvasToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button buttonResize;
+        private System.Windows.Forms.Button buttonResize2;
     }
 }
 

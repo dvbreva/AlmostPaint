@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -81,6 +83,18 @@ namespace AlmostPaint
         {
             Selection = 9;
             SelectionLabel.Text = "You have selected to change opacity.";
+        }
+
+        private void buttonResize_Click(object sender, EventArgs e)
+        {
+            Selection = 10;
+            SelectionLabel.Text = "You have selected to resize shape.";
+        }
+
+        private void buttonResize2_Click(object sender, EventArgs e)
+        {
+            Selection = 11;
+            SelectionLabel.Text = "You have selected to resize shape.";
         }
 
         private void PaintMainFrame_MouseDown(object sender, MouseEventArgs e)
@@ -224,7 +238,49 @@ namespace AlmostPaint
             this.Y = e.Y;
         }
 
-        
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog
+            {
+                Filter = "almostpaint file (*.ap)|*.ap",
+                Title = "Save an Almost Paint file",
+                FilterIndex = 2
+            };
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                FileStream stream = new FileStream(saveDialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None);
+                binaryFormatter.Serialize(stream, ItemsList);
+                stream.Close();
+            }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            FileStream fileStream = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.Read, FileShare.None);
+            ItemsList = (List<IDrawable>)binaryFormatter.Deserialize(fileStream);
+            fileStream.Close();
+            Selection = 1;
+            SelectedItem = null;
+            Refresh();
+        }
+
+
+        private void newCanvasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ItemsList = new List<IDrawable>();
+            this.SelectedItem = null;
+            openFileDialog1.FileName = String.Empty;
+            saveFileDialog1.FileName = String.Empty;
+            Refresh();
+        }
     }
 }
 
