@@ -77,6 +77,12 @@ namespace AlmostPaint
             SelectionLabel.Text = "You have selected to change color.";
         }
 
+        private void buttonOpacity_Click(object sender, EventArgs e)
+        {
+            Selection = 9;
+            SelectionLabel.Text = "You have selected to change opacity.";
+        }
+
         private void PaintMainFrame_MouseDown(object sender, MouseEventArgs e)
         {
             if (Selection == 1)
@@ -158,6 +164,34 @@ namespace AlmostPaint
                     Selection = 1;
                 }
                 SelectedItem = null;
+            }
+
+            if(Selection == 9)
+            {
+                int opValue = int.Parse(textBox1.Text.ToString());
+                if (opValue >= 0 && opValue <= 255)
+                {
+                    int actualOpacityValue = opValue;
+                    foreach (IDrawable drawnItem in ItemsList)
+                    {
+                        if (drawnItem is IShape)
+                        {
+                            if (((IShape)drawnItem).ContainsPoint(e.X, e.Y))
+                            {
+                                SelectedItem = drawnItem;
+                                NewSelectedColor = Color.FromArgb(actualOpacityValue, NewSelectedColor.R, NewSelectedColor.G, NewSelectedColor.B);
+                                SelectedItem.ChangeColor(NewSelectedColor);
+                                // za da moje posle da si izbera cvqt s koito da moga da risuvam s 255 za a 
+                                NewSelectedColor = colorDialog1.Color;
+                            }
+                        }
+                        Selection = 1;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Wrong input.");
+                }
             }
             this.Refresh();
         }

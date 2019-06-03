@@ -44,9 +44,11 @@
             this.buttonRectangle = new System.Windows.Forms.Button();
             this.buttonSelect = new System.Windows.Forms.Button();
             this.ControlsPanel = new System.Windows.Forms.Panel();
-            this.SelectionLabel = new System.Windows.Forms.Label();
             this.buttonColor = new System.Windows.Forms.Button();
+            this.SelectionLabel = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.buttonOpacity = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.ShapesPanel.SuspendLayout();
             this.ControlsPanel.SuspendLayout();
@@ -176,20 +178,13 @@
             // ControlsPanel
             // 
             this.ControlsPanel.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.ControlsPanel.Controls.Add(this.textBox1);
+            this.ControlsPanel.Controls.Add(this.buttonOpacity);
             this.ControlsPanel.Controls.Add(this.buttonColor);
             this.ControlsPanel.Location = new System.Drawing.Point(0, 64);
             this.ControlsPanel.Name = "ControlsPanel";
             this.ControlsPanel.Size = new System.Drawing.Size(87, 230);
             this.ControlsPanel.TabIndex = 3;
-            // 
-            // SelectionLabel
-            // 
-            this.SelectionLabel.AutoSize = true;
-            this.SelectionLabel.Location = new System.Drawing.Point(9, 428);
-            this.SelectionLabel.Name = "SelectionLabel";
-            this.SelectionLabel.Size = new System.Drawing.Size(69, 13);
-            this.SelectionLabel.TabIndex = 4;
-            this.SelectionLabel.Text = "selection info";
             // 
             // buttonColor
             // 
@@ -200,6 +195,32 @@
             this.buttonColor.Text = "Color";
             this.buttonColor.UseVisualStyleBackColor = true;
             this.buttonColor.Click += new System.EventHandler(this.buttonColor_Click);
+            // 
+            // SelectionLabel
+            // 
+            this.SelectionLabel.AutoSize = true;
+            this.SelectionLabel.Location = new System.Drawing.Point(9, 428);
+            this.SelectionLabel.Name = "SelectionLabel";
+            this.SelectionLabel.Size = new System.Drawing.Size(69, 13);
+            this.SelectionLabel.TabIndex = 4;
+            this.SelectionLabel.Text = "selection info";
+            // 
+            // buttonOpacity
+            // 
+            this.buttonOpacity.Location = new System.Drawing.Point(9, 77);
+            this.buttonOpacity.Name = "buttonOpacity";
+            this.buttonOpacity.Size = new System.Drawing.Size(69, 40);
+            this.buttonOpacity.TabIndex = 1;
+            this.buttonOpacity.Text = "Change Opacity";
+            this.buttonOpacity.UseVisualStyleBackColor = true;
+            this.buttonOpacity.Click += new System.EventHandler(this.buttonOpacity_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 54);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(65, 20);
+            this.textBox1.TabIndex = 2;
             // 
             // PaintMainFrame
             // 
@@ -223,6 +244,7 @@
             this.menuStrip1.PerformLayout();
             this.ShapesPanel.ResumeLayout(false);
             this.ControlsPanel.ResumeLayout(false);
+            this.ControlsPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,6 +269,8 @@
         private System.Windows.Forms.Button buttonCircle;
         private System.Windows.Forms.Button buttonColor;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button buttonOpacity;
     }
 }
 

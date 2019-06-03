@@ -98,7 +98,7 @@ namespace ShapesLibrary.Shapes
 
         public void DrawMethod(Graphics g)
         {
-            Pen p = new Pen(Color.Black);
+            Pen p = new Pen(this.Color);
             g.FillRectangle(new SolidBrush(this.Color), X, Y, ShapeWidth, ShapeHeight);
             g.DrawRectangle(p, X, Y, ShapeWidth, ShapeHeight);
         }
