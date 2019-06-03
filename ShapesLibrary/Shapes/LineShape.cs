@@ -8,6 +8,7 @@ using ShapesLibrary.Interfaces;
 
 namespace ShapesLibrary.Shapes
 {
+    [Serializable]
     public class LineShape : IDrawable, ITranslatable, IShape
     {
         private Color _color;

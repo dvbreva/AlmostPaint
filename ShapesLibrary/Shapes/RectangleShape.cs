@@ -1,8 +1,10 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using ShapesLibrary.Interfaces;
 
 namespace ShapesLibrary.Shapes
 {
+    [Serializable]
     public class RectangleShape : IDrawable, ITranslatable, IShape
     {
         private Color _color;

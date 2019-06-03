@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ShapesLibrary.Shapes
 {
+    [Serializable]
     public class CircleShape : IDrawable, ITranslatable, IShape
     {
         private Color _color;
