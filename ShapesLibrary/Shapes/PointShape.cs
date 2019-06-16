@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using ShapesLibrary.Interfaces;
+using System.Windows.Forms;
 
 namespace ShapesLibrary.Shapes
 {
@@ -109,6 +110,16 @@ namespace ShapesLibrary.Shapes
         {
             this.X += dX;
             this.Y += dY;
+        }
+
+        public void ResizeBigger()
+        {
+            MessageBox.Show("You cannot make this dot bigger.");
+        }
+
+        public void ResizeSmaller()
+        {
+            MessageBox.Show("You cannot make this dot smaller.");
         }
     }
 }

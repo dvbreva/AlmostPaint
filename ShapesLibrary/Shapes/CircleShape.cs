@@ -111,5 +111,16 @@ namespace ShapesLibrary.Shapes
             this.Y += dY;
         }
 
+        public void ResizeBigger()
+        {
+            this.ShapeWidth += 20;
+            this.ShapeHeight += 20;
+        }
+
+        public void ResizeSmaller()
+        {
+            this.ShapeHeight -= 20;
+            this.ShapeHeight -= 20;
+        }
     }
 }

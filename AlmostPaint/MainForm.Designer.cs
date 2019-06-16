@@ -124,6 +124,8 @@
             // 
             // ShapesPanel
             // 
+            this.ShapesPanel.AutoSize = true;
+            this.ShapesPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ShapesPanel.BackColor = System.Drawing.SystemColors.Control;
             this.ShapesPanel.Controls.Add(this.buttonPoint);
             this.ShapesPanel.Controls.Add(this.buttonEllipse);
@@ -134,7 +136,7 @@
             this.ShapesPanel.Controls.Add(this.buttonSelect);
             this.ShapesPanel.Location = new System.Drawing.Point(0, 23);
             this.ShapesPanel.Name = "ShapesPanel";
-            this.ShapesPanel.Size = new System.Drawing.Size(832, 42);
+            this.ShapesPanel.Size = new System.Drawing.Size(576, 38);
             this.ShapesPanel.TabIndex = 2;
             // 
             // buttonPoint
@@ -209,6 +211,8 @@
             // 
             // ControlsPanel
             // 
+            this.ControlsPanel.AutoSize = true;
+            this.ControlsPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ControlsPanel.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.ControlsPanel.Controls.Add(this.buttonResize);
             this.ControlsPanel.Controls.Add(this.buttonResize2);
@@ -217,7 +221,7 @@
             this.ControlsPanel.Controls.Add(this.buttonColor);
             this.ControlsPanel.Location = new System.Drawing.Point(0, 64);
             this.ControlsPanel.Name = "ControlsPanel";
-            this.ControlsPanel.Size = new System.Drawing.Size(87, 361);
+            this.ControlsPanel.Size = new System.Drawing.Size(84, 213);
             this.ControlsPanel.TabIndex = 3;
             // 
             // buttonResize
@@ -238,6 +242,7 @@
             this.buttonResize2.TabIndex = 4;
             this.buttonResize2.Text = "Resize -";
             this.buttonResize2.UseVisualStyleBackColor = true;
+            this.buttonResize2.Click += new System.EventHandler(this.buttonResize2_Click);
             // 
             // textBox1
             // 

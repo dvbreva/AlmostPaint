@@ -120,37 +120,37 @@ namespace AlmostPaint
                 ItemsList.Add(item);
             }
 
-            if(Selection == 3)
+            if (Selection == 3)
             {
                 SquareShape item = new SquareShape(NewSelectedColor, e.X - 25, e.Y - 50, 100, 100);
                 ItemsList.Add(item);
             }
 
-            if(Selection == 4)
+            if (Selection == 4)
             {
                 LineShape item = new LineShape(NewSelectedColor, e.X - 25, e.Y - 50, 100, 5);
                 ItemsList.Add(item);
             }
 
-            if(Selection == 5)
+            if (Selection == 5)
             {
                 CircleShape item = new CircleShape(NewSelectedColor, e.X - 25, e.Y - 50, 100, 100);
                 ItemsList.Add(item);
             }
 
-            if(Selection == 6)
+            if (Selection == 6)
             {
                 EllipseShape item = new EllipseShape(NewSelectedColor, e.X - 25, e.Y - 50, 150, 100);
                 ItemsList.Add(item);
             }
 
-            if(Selection == 7)
+            if (Selection == 7)
             {
                 PointShape item = new PointShape(NewSelectedColor, e.X - 25, e.Y - 50, 10, 10);
                 ItemsList.Add(item);
             }
 
-            if(Selection == 8)
+            if (Selection == 8)
             {
                 // !somewhat working -> tova e kato si izbera cvqt da gi risuva s nego :D  
                 if (colorDialog1.ShowDialog() == DialogResult.OK)
@@ -180,7 +180,7 @@ namespace AlmostPaint
                 SelectedItem = null;
             }
 
-            if(Selection == 9)
+            if (Selection == 9)
             {
                 int opValue = int.Parse(textBox1.Text.ToString());
                 if (opValue >= 0 && opValue <= 255)
@@ -207,6 +207,38 @@ namespace AlmostPaint
                     MessageBox.Show("Wrong input.");
                 }
             }
+
+            if (Selection == 10)
+            {
+                foreach (IDrawable drawnItem in ItemsList)
+                {
+                    if (drawnItem is IShape)
+                    {
+                        if (((IShape)drawnItem).ContainsPoint(e.X, e.Y))
+                        {
+                            SelectedItem = drawnItem;
+                            drawnItem.ResizeBigger();
+                        }
+                    }
+                }
+            }
+
+            if (Selection == 11)
+            {
+                foreach (IDrawable drawnItem in ItemsList)
+                {
+                    if (drawnItem is IShape)
+                    {
+                        if (((IShape)drawnItem).ContainsPoint(e.X, e.Y))
+                        {
+                            SelectedItem = drawnItem;
+                            drawnItem.ResizeSmaller();
+                            
+                        }
+                    }
+                }
+            }
+
             this.Refresh();
         }
 
@@ -281,6 +313,8 @@ namespace AlmostPaint
             saveFileDialog1.FileName = String.Empty;
             Refresh();
         }
+
+        
     }
 }
 

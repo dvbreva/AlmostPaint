@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ShapesLibrary.Shapes
 {
@@ -112,6 +113,16 @@ namespace ShapesLibrary.Shapes
             this.Y += dY;
         }
 
-       
+        public void ResizeBigger()
+        {
+            this.ShapeWidth += 20;
+            this.ShapeHeight += 20;
+        }
+
+        public void ResizeSmaller()
+        {
+            this.ShapeWidth -= 20;
+            this.ShapeHeight -= 20;
+        }
     }
 }

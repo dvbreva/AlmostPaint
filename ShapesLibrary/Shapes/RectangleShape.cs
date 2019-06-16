@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 using ShapesLibrary.Interfaces;
 
 namespace ShapesLibrary.Shapes
@@ -105,6 +106,27 @@ namespace ShapesLibrary.Shapes
         {
             this.X += dX;
             this.Y += dY;
+        }
+
+        public void ResizeBigger()
+        {
+            this.ShapeWidth += 20;
+            this.ShapeHeight += 20;
+        }
+
+        public void ResizeSmaller()
+        {
+            if (this.ShapeWidth > 110 && (this.ShapeHeight > 10))
+            {
+                this.ShapeWidth -= 20;
+                this.ShapeHeight -= 20;
+
+                if (this.ShapeWidth <= 110 && (this.ShapeHeight <= 10))
+                {
+                    MessageBox.Show("You cannot make this rectangle any more smaller.");
+                }       
+            }
+           
         }
     }
 }

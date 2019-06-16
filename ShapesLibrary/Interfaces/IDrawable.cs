@@ -7,5 +7,9 @@ namespace ShapesLibrary.Interfaces
         void DrawMethod(Graphics g);
 
         void ChangeColor(Color color);
+
+        void ResizeBigger();
+
+        void ResizeSmaller();
     }
 }
