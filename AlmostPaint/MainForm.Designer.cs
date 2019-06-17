@@ -56,6 +56,8 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.textBoxChangeName = new System.Windows.Forms.TextBox();
+            this.buttonChangeName = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.ShapesPanel.SuspendLayout();
             this.ControlsPanel.SuspendLayout();
@@ -211,9 +213,10 @@
             // 
             // ControlsPanel
             // 
-            this.ControlsPanel.AutoSize = true;
             this.ControlsPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ControlsPanel.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.ControlsPanel.Controls.Add(this.buttonChangeName);
+            this.ControlsPanel.Controls.Add(this.textBoxChangeName);
             this.ControlsPanel.Controls.Add(this.buttonResize);
             this.ControlsPanel.Controls.Add(this.buttonResize2);
             this.ControlsPanel.Controls.Add(this.textBox1);
@@ -221,7 +224,7 @@
             this.ControlsPanel.Controls.Add(this.buttonColor);
             this.ControlsPanel.Location = new System.Drawing.Point(0, 64);
             this.ControlsPanel.Name = "ControlsPanel";
-            this.ControlsPanel.Size = new System.Drawing.Size(84, 213);
+            this.ControlsPanel.Size = new System.Drawing.Size(84, 301);
             this.ControlsPanel.TabIndex = 3;
             // 
             // buttonResize
@@ -285,6 +288,23 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // textBoxChangeName
+            // 
+            this.textBoxChangeName.Location = new System.Drawing.Point(13, 216);
+            this.textBoxChangeName.Name = "textBoxChangeName";
+            this.textBoxChangeName.Size = new System.Drawing.Size(65, 20);
+            this.textBoxChangeName.TabIndex = 5;
+            // 
+            // buttonChangeName
+            // 
+            this.buttonChangeName.Location = new System.Drawing.Point(12, 242);
+            this.buttonChangeName.Name = "buttonChangeName";
+            this.buttonChangeName.Size = new System.Drawing.Size(69, 40);
+            this.buttonChangeName.TabIndex = 6;
+            this.buttonChangeName.Text = "Change name";
+            this.buttonChangeName.UseVisualStyleBackColor = true;
+            this.buttonChangeName.Click += new System.EventHandler(this.buttonChangeName_Click);
+            // 
             // PaintMainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -341,6 +361,8 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button buttonResize;
         private System.Windows.Forms.Button buttonResize2;
+        private System.Windows.Forms.Button buttonChangeName;
+        private System.Windows.Forms.TextBox textBoxChangeName;
     }
 }
 

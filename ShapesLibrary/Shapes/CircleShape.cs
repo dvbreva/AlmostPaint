@@ -16,6 +16,7 @@ namespace ShapesLibrary.Shapes
         private int y;
         private int shapeWidth;
         private int shapeHeight;
+        private string shapeName;
 
         public Color Color
         {
@@ -78,14 +79,27 @@ namespace ShapesLibrary.Shapes
         }
 
 
-        public CircleShape(Color Color, int X, int Y, int width, int height)
+        public string ShapeName
+        {
+            get
+            {
+                return this.shapeName;
+            }
+            set
+            {
+                this.shapeName = value;
+            }
+        }
+
+
+        public CircleShape(Color Color, int X, int Y, int width, int height,string name)
         {
             this.Color = Color;
             this.X = X;
             this.Y = Y;
             this.ShapeWidth = width;
             this.ShapeHeight = height;
-
+            this.ShapeName = name;
         }
 
         public void ChangeColor(Color color)
@@ -121,6 +135,20 @@ namespace ShapesLibrary.Shapes
         {
             this.ShapeHeight -= 20;
             this.ShapeHeight -= 20;
+        }
+
+        public void ChangeName(string desiredName)
+        {
+            this.ShapeName = desiredName;
+        }
+
+        public string GetInfo()
+        {
+            return "\n > Shape name : " + this.ShapeName
+                + "\n > Shape width : " + this.ShapeWidth
+                + "\n > Shape height : " + this.ShapeHeight
+                + "\n > Shape color : " + this.Color
+                + "\n > Shape coordinates (x,y) : " + "(" + this.X + "," + this.Y + ")";
         }
     }
 }

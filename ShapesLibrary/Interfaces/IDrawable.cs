@@ -11,5 +11,9 @@ namespace ShapesLibrary.Interfaces
         void ResizeBigger();
 
         void ResizeSmaller();
+
+        void ChangeName(string desiredName);
+
+        string GetInfo();
     }
 }

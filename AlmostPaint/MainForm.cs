@@ -97,8 +97,16 @@ namespace AlmostPaint
             SelectionLabel.Text = "You have selected to resize shape.";
         }
 
+        private void buttonChangeName_Click(object sender, EventArgs e)
+        {
+            Selection = 12;
+            SelectionLabel.Text = "You have selected to change name.";
+        }
+
         private void PaintMainFrame_MouseDown(object sender, MouseEventArgs e)
         {
+            
+          
             if (Selection == 1)
             {
                 foreach (IDrawable drawnItem in ItemsList)
@@ -108,6 +116,11 @@ namespace AlmostPaint
                         if (((IShape)drawnItem).ContainsPoint(e.X, e.Y))
                         {
                             SelectedItem = drawnItem;
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                MessageBox.Show("This is the info for the selected shape: \n " + drawnItem.GetInfo());
+                            }
+
                             break;
                         }
                     }
@@ -116,37 +129,37 @@ namespace AlmostPaint
 
             if (Selection == 2)
             {
-                RectangleShape item = new RectangleShape(NewSelectedColor, e.X - 25, e.Y - 50, 150, 50);
+                RectangleShape item = new RectangleShape(NewSelectedColor, e.X - 25, e.Y - 50, 150, 50, "rectangle unchanged name");
                 ItemsList.Add(item);
             }
 
             if (Selection == 3)
             {
-                SquareShape item = new SquareShape(NewSelectedColor, e.X - 25, e.Y - 50, 100, 100);
+                SquareShape item = new SquareShape(NewSelectedColor, e.X - 25, e.Y - 50, 100, 100, "square unchanged name");
                 ItemsList.Add(item);
             }
 
             if (Selection == 4)
             {
-                LineShape item = new LineShape(NewSelectedColor, e.X - 25, e.Y - 50, 100, 5);
+                LineShape item = new LineShape(NewSelectedColor, e.X - 25, e.Y - 50, 100, 5, "line unchanged name");
                 ItemsList.Add(item);
             }
 
             if (Selection == 5)
             {
-                CircleShape item = new CircleShape(NewSelectedColor, e.X - 25, e.Y - 50, 100, 100);
+                CircleShape item = new CircleShape(NewSelectedColor, e.X - 25, e.Y - 50, 100, 100, "circle unchanged name");
                 ItemsList.Add(item);
             }
 
             if (Selection == 6)
             {
-                EllipseShape item = new EllipseShape(NewSelectedColor, e.X - 25, e.Y - 50, 150, 100);
+                EllipseShape item = new EllipseShape(NewSelectedColor, e.X - 25, e.Y - 50, 150, 100, "ellipse unchanged name");
                 ItemsList.Add(item);
             }
 
             if (Selection == 7)
             {
-                PointShape item = new PointShape(NewSelectedColor, e.X - 25, e.Y - 50, 10, 10);
+                PointShape item = new PointShape(NewSelectedColor, e.X - 25, e.Y - 50, 10, 10, "point unchanged name");
                 ItemsList.Add(item);
             }
 
@@ -239,6 +252,25 @@ namespace AlmostPaint
                 }
             }
 
+            if (Selection == 12)
+            {
+                foreach (IDrawable drawnItem in ItemsList)
+                {
+                    if (drawnItem is IShape)
+                    {
+                        if (((IShape)drawnItem).ContainsPoint(e.X, e.Y))
+                        {
+                            SelectedItem = drawnItem;
+                            string newValueForName = textBoxChangeName.Text;
+                            drawnItem.ChangeName(newValueForName);
+                            SelectionLabel.Text = "The new value for the name of this shape is " + newValueForName;
+                            
+                            break;
+                        }
+                    }
+                }
+            }
+
             this.Refresh();
         }
 
@@ -254,6 +286,8 @@ namespace AlmostPaint
         {
             SelectedItem = null;
         }
+
+       
 
         private void PaintMainFrame_MouseMove(object sender, MouseEventArgs e)
         {
