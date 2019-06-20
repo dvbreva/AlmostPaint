@@ -9,7 +9,7 @@ using ShapesLibrary.Interfaces;
 namespace ShapesLibrary.Shapes
 {
     [Serializable]
-    public class LineShape : IDrawable, ITranslatable, IShape
+    public class LineShape : IDraw, ITranslate, IShape
     {
         private Color _color;
         private int x;
@@ -152,9 +152,11 @@ namespace ShapesLibrary.Shapes
         }
 
 
-        public IDrawable CopyShape()
+        public IDraw CopyShape()
         {
-            throw new NotImplementedException();
+            LineShape copiedLineShape = new LineShape(Color, X, Y, ShapeWidth, ShapeHeight, ShapeName);
+
+            return copiedLineShape;
         }
     }
 }

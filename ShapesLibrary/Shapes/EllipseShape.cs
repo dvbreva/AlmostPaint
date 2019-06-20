@@ -9,7 +9,7 @@ using ShapesLibrary.Interfaces;
 namespace ShapesLibrary.Shapes
 {
     [Serializable]
-    public class EllipseShape : IDrawable, ITranslatable, IShape
+    public class EllipseShape : IDraw, ITranslate, IShape
     {
         private Color _color;
         private int x;
@@ -151,9 +151,11 @@ namespace ShapesLibrary.Shapes
         }
 
 
-        public IDrawable CopyShape()
+        public IDraw CopyShape()
         {
-            throw new NotImplementedException();
+            EllipseShape copiedEllipseShape = new EllipseShape(Color, X, Y, ShapeWidth, ShapeHeight, ShapeName);
+
+            return copiedEllipseShape;
         }
     }
 }

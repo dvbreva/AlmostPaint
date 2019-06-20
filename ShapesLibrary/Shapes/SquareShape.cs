@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace ShapesLibrary.Shapes
 {
     [Serializable]
-    public class SquareShape : IDrawable, ITranslatable, IShape
+    public class SquareShape : IDraw, ITranslate, IShape
     {
         private Color _color;
         private int x;
@@ -152,9 +152,10 @@ namespace ShapesLibrary.Shapes
                 + "\n > Shape coordinates (x,y) : " + "(" + this.X + "," + this.Y + ")";
         }
 
-        public IDrawable CopyShape()
+        public IDraw CopyShape()
         {
             SquareShape copiedSquareShape = new SquareShape(Color,X,Y,ShapeWidth,ShapeHeight,ShapeName);
+
             return copiedSquareShape;
         }
     }

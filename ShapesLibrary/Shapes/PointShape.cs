@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace ShapesLibrary.Shapes
 {
     [Serializable]
-    public class PointShape : IDrawable, ITranslatable, IShape
+    public class PointShape : IDraw, ITranslate, IShape
     {
         private Color _color;
         private int x;
@@ -150,9 +150,11 @@ namespace ShapesLibrary.Shapes
         }
 
 
-        public IDrawable CopyShape()
+        public IDraw CopyShape()
         {
-            throw new NotImplementedException();
+            PointShape copiedPointShape = new PointShape(Color, X, Y, ShapeWidth, ShapeHeight, ShapeName);
+
+            return copiedPointShape;
         }
     }
 }

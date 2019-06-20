@@ -3,13 +3,9 @@ using ShapesLibrary.Shapes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -19,12 +15,17 @@ namespace AlmostPaint
     {
         int X;
         int Y;
+
         public int Selection = 1;
-        public IDrawable SelectedItem = null;
+
+        public IDraw SelectedItem = null;
+
         public Color NewSelectedColor;
         public Color selectionColor = Color.FromArgb(50, Color.Red);
-        public List<IDrawable> ItemsList = new List<IDrawable>();
-        public IDrawable itemToCopy = null;
+
+        public List<IDraw> ItemsList = new List<IDraw>();
+
+        public IDraw itemToCopy = null;
 
         public PaintMainFrame()
         {
@@ -180,7 +181,7 @@ namespace AlmostPaint
           
             if (Selection == 1)
             {
-                foreach (IDrawable drawnItem in ItemsList)
+                foreach (IDraw drawnItem in ItemsList)
                 {
                     if (drawnItem is IShape)
                     {
@@ -247,7 +248,7 @@ namespace AlmostPaint
 
 
 
-                foreach (IDrawable drawnItem in ItemsList)
+                foreach (IDraw drawnItem in ItemsList)
                 {
                     if (drawnItem is IShape)
                     {
@@ -273,7 +274,7 @@ namespace AlmostPaint
                 if (opValue >= 0 && opValue <= 255)
                 {
                     int actualOpacityValue = opValue;
-                    foreach (IDrawable drawnItem in ItemsList)
+                    foreach (IDraw drawnItem in ItemsList)
                     {
                         if (drawnItem is IShape)
                         {
@@ -297,7 +298,7 @@ namespace AlmostPaint
 
             if (Selection == 10)
             {
-                foreach (IDrawable drawnItem in ItemsList)
+                foreach (IDraw drawnItem in ItemsList)
                 {
                     if (drawnItem is IShape)
                     {
@@ -312,7 +313,7 @@ namespace AlmostPaint
 
             if (Selection == 11)
             {
-                foreach (IDrawable drawnItem in ItemsList)
+                foreach (IDraw drawnItem in ItemsList)
                 {
                     if (drawnItem is IShape)
                     {
@@ -328,7 +329,7 @@ namespace AlmostPaint
 
             if (Selection == 12)
             {
-                foreach (IDrawable drawnItem in ItemsList)
+                foreach (IDraw drawnItem in ItemsList)
                 {
                     if (drawnItem is IShape)
                     {
@@ -355,7 +356,7 @@ namespace AlmostPaint
                 }
                 else
                 {
-                    foreach (IDrawable drawnItem in ItemsList)
+                    foreach (IDraw drawnItem in ItemsList)
                     {
                             if (((IShape)drawnItem).ContainsPoint(e.X, e.Y))
                             {
@@ -373,7 +374,7 @@ namespace AlmostPaint
 
             if (Selection == 14)
             {
-                    foreach (IDrawable drawnItem in ItemsList)
+                    foreach (IDraw drawnItem in ItemsList)
                     {
                         if (drawnItem is IShape)
                         {
@@ -393,7 +394,7 @@ namespace AlmostPaint
 
             if(Selection == 15)
             {
-                 foreach (IDrawable drawnItem in ItemsList)
+                 foreach (IDraw drawnItem in ItemsList)
                  {
                      if (drawnItem is IShape)
                      {
@@ -401,7 +402,7 @@ namespace AlmostPaint
                          {
                              SelectedItem = drawnItem;
                              itemToCopy = drawnItem;
-                             IDrawable pastedItem = itemToCopy.CopyShape();
+                             IDraw pastedItem = itemToCopy.CopyShape();
                              ItemsList.Add(pastedItem);
 
                              SelectionLabel.Text = "You successfully pasted copy shape of type " + itemToCopy.GetType().Name;
@@ -418,7 +419,7 @@ namespace AlmostPaint
 
         private void PaintMainFrame_Paint(object sender, PaintEventArgs e)
         {
-            foreach (IDrawable item in ItemsList)
+            foreach (IDraw item in ItemsList)
             {
                 item.DrawMethod(e.Graphics);
             }
@@ -433,12 +434,12 @@ namespace AlmostPaint
 
         private void PaintMainFrame_MouseMove(object sender, MouseEventArgs e)
         {
-            if (SelectedItem != null && SelectedItem is ITranslatable)
+            if (SelectedItem != null && SelectedItem is ITranslate)
             {
                 int dX = e.X - this.X;
                 int dY = e.Y - this.Y;
 
-                ((ITranslatable)SelectedItem).TranslateMethod(dX, dY);
+                ((ITranslate)SelectedItem).TranslateMethod(dX, dY);
                 this.Refresh();
             }
 
@@ -473,7 +474,7 @@ namespace AlmostPaint
         {
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             FileStream fileStream = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.Read, FileShare.None);
-            ItemsList = (List<IDrawable>)binaryFormatter.Deserialize(fileStream);
+            ItemsList = (List<IDraw>)binaryFormatter.Deserialize(fileStream);
             fileStream.Close();
             Selection = 1;
             SelectedItem = null;
@@ -483,7 +484,7 @@ namespace AlmostPaint
 
         private void newCanvasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.ItemsList = new List<IDrawable>();
+            this.ItemsList = new List<IDraw>();
             this.SelectedItem = null;
             openFileDialog1.FileName = String.Empty;
             saveFileDialog1.FileName = String.Empty;
@@ -626,7 +627,7 @@ namespace AlmostPaint
                 "Ctrl + R - allows you to start drawing rectangles\n" +
                 "Ctrl + Q - allows you to start drawing squares\n" +
                 "Ctrl + C - allows you to start drawing circles\n" +
-                "Ctrl + E - allows you to start drawing ellipses\n" +
+                "Ctrl + E - allows you to start dr awing ellipses\n" +
                 "Ctrl + P - allows you to start drawing points\n" +
                 "Ctrl + B - allows you to resize a shape bigger\n" +
                 "Ctrl + J - allows you to resize a shape smaller\n" +
@@ -642,7 +643,7 @@ namespace AlmostPaint
         {
             MessageBox.Show("AlmostPaint is my GUI course work. The name is valid representation of the functionality as it resembles Paint but it is not like it. \n\n" +
                 "You can switch between keyboard combinations, menu options and buttons here." +
-                "You can draw shapes, change their color and opacity, resize them and change their names. If you" +
+                "You can draw shapes, change their color and opacity, resize them and change their names. If you " +
                 "are satisfied you can also save your current canvas. \n\n" +
                 "Enjoy!", "Information about Almost Paint");
         }

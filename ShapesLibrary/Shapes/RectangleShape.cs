@@ -6,7 +6,7 @@ using ShapesLibrary.Interfaces;
 namespace ShapesLibrary.Shapes
 {
     [Serializable]
-    public class RectangleShape : IDrawable, ITranslatable, IShape
+    public class RectangleShape : IDraw, ITranslate, IShape
     {
         private Color _color;
         private int x;
@@ -155,9 +155,11 @@ namespace ShapesLibrary.Shapes
         }
 
 
-        public IDrawable CopyShape()
+        public IDraw CopyShape()
         {
-            throw new NotImplementedException();
+            RectangleShape copiedRectangleShape = new RectangleShape(Color, X, Y, ShapeWidth, ShapeHeight, ShapeName);
+
+            return copiedRectangleShape;
         }
     }
 }

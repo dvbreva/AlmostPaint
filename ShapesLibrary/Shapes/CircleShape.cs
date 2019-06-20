@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ShapesLibrary.Shapes
 {
     [Serializable]
-    public class CircleShape : IDrawable, ITranslatable, IShape
+    public class CircleShape : IDraw, ITranslate, IShape
     {
         private Color _color;
         private int x;
@@ -152,9 +152,11 @@ namespace ShapesLibrary.Shapes
         }
 
 
-        public IDrawable CopyShape()
+        public IDraw CopyShape()
         {
-            throw new NotImplementedException();
+            CircleShape copiedCircleShape = new CircleShape(Color, X, Y, ShapeWidth, ShapeHeight, ShapeName);
+
+            return copiedCircleShape;
         }
     }
 }

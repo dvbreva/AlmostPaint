@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace ShapesLibrary.Shapes
 {
-    public class GroupShape : IDrawable, ITranslatable, IShape
+    public class GroupShape : IDraw, ITranslate, IShape
     {
-        public List<IDrawable> GroupItems { get; set; }
+        public List<IDraw> GroupItems { get; set; }
 
         public GroupShape()
         {
-            this.GroupItems = new List<IDrawable>();
+            this.GroupItems = new List<IDraw>();
         } 
 
 
@@ -59,7 +59,7 @@ namespace ShapesLibrary.Shapes
         }
 
 
-        public IDrawable CopyShape()
+        public IDraw CopyShape()
         {
             throw new NotImplementedException();
         }
