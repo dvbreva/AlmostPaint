@@ -15,5 +15,7 @@ namespace ShapesLibrary.Interfaces
         void ChangeName(string desiredName);
 
         string GetInfo();
+
+       // void AddSelectionBorder();
     }
 }

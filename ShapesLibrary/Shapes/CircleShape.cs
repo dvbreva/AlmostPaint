@@ -133,7 +133,7 @@ namespace ShapesLibrary.Shapes
 
         public void ResizeSmaller()
         {
-            this.ShapeHeight -= 20;
+            this.ShapeWidth -= 20;
             this.ShapeHeight -= 20;
         }
 

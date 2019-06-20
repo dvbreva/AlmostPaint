@@ -22,6 +22,7 @@ namespace AlmostPaint
         public int Selection = 1;
         public IDrawable SelectedItem = null;
         public Color NewSelectedColor;
+        public Color selectionColor = Color.FromArgb(50, Color.Red);
         public List<IDrawable> ItemsList = new List<IDrawable>();
 
 
@@ -103,6 +104,64 @@ namespace AlmostPaint
             SelectionLabel.Text = "You have selected to change name.";
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Selection = 13;
+            SelectionLabel.Text = "You have selected to create a group shape.";
+        }
+
+
+        // tool strip commands 
+        private void selectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selection = 1;
+        }
+
+        private void drawARectangleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selection = 2;
+        }
+
+        private void drawASquareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selection = 3;
+        }
+
+        private void drawALineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selection = 4;
+        }
+
+        private void drawACircleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selection = 5;
+        }
+
+        private void dranAnEllipseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selection = 6;
+        }
+
+        private void drawAPointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selection = 7;
+        }
+
+        private void changeColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selection = 8;
+        }
+
+        private void resizeBiggerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selection = 10;
+        }
+
+        private void resizeSmallerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selection = 11;
+        }
+
         private void PaintMainFrame_MouseDown(object sender, MouseEventArgs e)
         {
             
@@ -116,6 +175,9 @@ namespace AlmostPaint
                         if (((IShape)drawnItem).ContainsPoint(e.X, e.Y))
                         {
                             SelectedItem = drawnItem;
+
+                            SelectionLabel.Text = "You have selected a shape of type " + SelectedItem.GetType().Name;
+
                             if (e.Button == MouseButtons.Right)
                             {
                                 MessageBox.Show("This is the info for the selected shape: \n " + drawnItem.GetInfo());
@@ -271,6 +333,32 @@ namespace AlmostPaint
                 }
             }
 
+            if(Selection == 13)
+            {
+                GroupShape groupShapeItems = new GroupShape();
+
+                if(ItemsList.Count <= 1)
+                {
+                    MessageBox.Show("You cannot create a group shape if you have only one shape drawn.");
+                }
+                else
+                {
+                    foreach (IDrawable drawnItem in ItemsList)
+                    {
+                            if (((IShape)drawnItem).ContainsPoint(e.X, e.Y))
+                            {
+                                SelectedItem = drawnItem;
+
+                                SelectionLabel.Text = SelectedItem.GetType().Name;
+
+                                groupShapeItems.GroupItems.Add(SelectedItem);
+                                
+                                //break;
+                            }
+                    }
+                }
+            }
+
             this.Refresh();
         }
 
@@ -345,10 +433,147 @@ namespace AlmostPaint
             this.SelectedItem = null;
             openFileDialog1.FileName = String.Empty;
             saveFileDialog1.FileName = String.Empty;
+            SelectionLabel.Text = "You have started a new project.";
             Refresh();
         }
 
-        
+        // Различни начини на задаване на операциите от потребителя - от клавиатурата
+        private void PaintMainFrame_KeyDown(object sender, KeyEventArgs e)
+        {
+            // resize bigger
+            if (e.KeyData.ToString() == "B, Control")
+            {
+                MessageBox.Show("You can select a shape you want to make bigger.");
+                Selection = 10;
+                SelectionLabel.Text = "made shape bigger";
+            }
+
+            // resize smaller 
+            if (e.KeyData.ToString() == "J, Control")
+            {
+                MessageBox.Show("You can select a shape you want to make smaller.");
+                Selection = 11;
+                SelectionLabel.Text = "made shape bigger";
+            }
+
+            // if you want to make sure nothing is selected and stop all current actions
+            if (e.KeyData.ToString() == "X, Control")
+            {
+                MessageBox.Show("Selected shape was cleared.");
+                Selection = 0;
+                SelectionLabel.Text = "nothing selected right now";
+            }
+
+            // select shape
+            if (e.KeyData.ToString() == "NumPad0")
+            {
+                MessageBox.Show("You can start selecting shapes.\nRight click on shape to see shape's details.");
+                Selection = 1;
+                SelectionLabel.Text = "Rectangles are the choosen shape.";
+            }
+
+            // draw rectangles 
+            if (e.KeyData.ToString() == "R, Control")
+            {
+                MessageBox.Show("You can start drawing rectangles.");
+                Selection = 2;
+                SelectionLabel.Text = "Rectangles are the choosen shape.";
+            }
+
+            // draw squares
+            if (e.KeyData.ToString() == "Q, Control")
+            {
+                MessageBox.Show("You can start drawing squares.");
+                Selection = 3;
+                SelectionLabel.Text = "Squares are the choosen shape.";
+            }
+
+            // draw circles
+            if (e.KeyData.ToString() == "C, Control")
+            {
+                MessageBox.Show("You can start drawing circles.");
+                Selection = 5;
+                SelectionLabel.Text = "Circles are the choosen shape.";
+            }
+
+            // draw ellipse
+            if (e.KeyData.ToString() == "E, Control")
+            {
+                MessageBox.Show("You can start drawing ellipses.");
+                Selection = 6;
+                SelectionLabel.Text = "Ellipses are the choosen shape.";
+            }
+
+            // draw points 
+            if (e.KeyData.ToString() == "P, Control")
+            {
+                MessageBox.Show("You can start drawing points.");
+                Selection = 7;
+                SelectionLabel.Text = "Points are the choosen shape.";
+            }
+
+            // show color dialog
+            if (e.KeyData.ToString() == "D, Control")
+            {
+                MessageBox.Show("You can now choose another color from color dialog.");
+                Selection = 8;
+                if (colorDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    NewSelectedColor = colorDialog1.Color;
+                }
+                SelectionLabel.Text = "You have changed color.";
+            }
+
+            // new file 
+            if (e.KeyData.ToString() == "N, Control")
+            {
+                MessageBox.Show("A new canvas is about to be reloaded.");
+                newCanvasToolStripMenuItem_Click(sender, e);
+                SelectionLabel.Text = "A new canvas was created";
+            }
+
+            // open file
+            if (e.KeyData.ToString() == "O, Control")
+            {
+                openToolStripMenuItem_Click(sender, e);
+                SelectionLabel.Text = "AlmostPaint File was opened.";
+            }
+
+            // save file
+            if (e.KeyData.ToString() == "S, Control"){
+                saveToolStripMenuItem_Click(sender, e);
+                MessageBox.Show("File was successfully saved!");
+                SelectionLabel.Text = "AlmostPaint File was saved.";
+            }
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("You can try my functionalities while only using the keyborad. \n" +
+                "Follow this commands: \n\n" +
+                "Ctrl + X - makes sure there is no sellected shape\n"+ 
+                "0 - allows you to start selecting shapes\n"+
+                "Ctrl + R - allows you to start drawing rectangles\n" +
+                "Ctrl + Q - allows you to start drawing squares\n" +
+                "Ctrl + C - allows you to start drawing circles\n" +
+                "Ctrl + E - allows you to start drawing ellipses\n" +
+                "Ctrl + P - allows you to start drawing points\n" +
+                "Ctrl + B - allows you to resize a shape bigger\n" +
+                "Ctrl + J - allows you to resize a shape smaller\n" +
+                "Ctrl + D - allows you to open color dialog and set your desired value to the default color\n" +
+                "Ctrl + N - will load you a clear canvas\n" +
+                "Ctrl + 0 - will allow you to open a AlmostPaint file from file dialog\n" +
+                "Ctrl + S - will allow you to save your current canvas", "Help with keyboard events");
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("AlmostPaint is my GUI course work. The name is valid representation of the functionality as it resembles Paint but it is not like it. \n\n" +
+                "You can switch between keyboard combinations, menu options and buttons here." +
+                "You can draw shapes, change their color and opacity, resize them and change their names. If you" +
+                "are satisfied you can also save your current canvas. \n\n" +
+                "Enjoy!", "Information about Almost Paint");
+        }
     }
 }
 

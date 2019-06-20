@@ -37,8 +37,20 @@
             this.newCanvasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawARectangleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawASquareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawALineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawACircleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dranAnEllipseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawAPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resizeBiggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resizeSmallerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ShapesPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.buttonPoint = new System.Windows.Forms.Button();
             this.buttonEllipse = new System.Windows.Forms.Button();
             this.buttonCircle = new System.Windows.Forms.Button();
@@ -47,6 +59,8 @@
             this.buttonRectangle = new System.Windows.Forms.Button();
             this.buttonSelect = new System.Windows.Forms.Button();
             this.ControlsPanel = new System.Windows.Forms.Panel();
+            this.buttonChangeName = new System.Windows.Forms.Button();
+            this.textBoxChangeName = new System.Windows.Forms.TextBox();
             this.buttonResize = new System.Windows.Forms.Button();
             this.buttonResize2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -56,8 +70,6 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.textBoxChangeName = new System.Windows.Forms.TextBox();
-            this.buttonChangeName = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.ShapesPanel.SuspendLayout();
             this.ControlsPanel.SuspendLayout();
@@ -68,7 +80,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.aboutToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.commandsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(832, 24);
@@ -112,12 +125,101 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
+            // 
+            // commandsToolStripMenuItem
+            // 
+            this.commandsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectToolStripMenuItem,
+            this.drawARectangleToolStripMenuItem,
+            this.drawASquareToolStripMenuItem,
+            this.drawALineToolStripMenuItem,
+            this.drawACircleToolStripMenuItem,
+            this.dranAnEllipseToolStripMenuItem,
+            this.drawAPointToolStripMenuItem,
+            this.changeColorToolStripMenuItem,
+            this.resizeBiggerToolStripMenuItem,
+            this.resizeSmallerToolStripMenuItem});
+            this.commandsToolStripMenuItem.Name = "commandsToolStripMenuItem";
+            this.commandsToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+            this.commandsToolStripMenuItem.Text = "Commands";
+            // 
+            // selectToolStripMenuItem
+            // 
+            this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
+            this.selectToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.selectToolStripMenuItem.Text = "Select";
+            this.selectToolStripMenuItem.Click += new System.EventHandler(this.selectToolStripMenuItem_Click);
+            // 
+            // drawARectangleToolStripMenuItem
+            // 
+            this.drawARectangleToolStripMenuItem.Name = "drawARectangleToolStripMenuItem";
+            this.drawARectangleToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.drawARectangleToolStripMenuItem.Text = "Draw a rectangle";
+            this.drawARectangleToolStripMenuItem.Click += new System.EventHandler(this.drawARectangleToolStripMenuItem_Click);
+            // 
+            // drawASquareToolStripMenuItem
+            // 
+            this.drawASquareToolStripMenuItem.Name = "drawASquareToolStripMenuItem";
+            this.drawASquareToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.drawASquareToolStripMenuItem.Text = "Draw a square";
+            this.drawASquareToolStripMenuItem.Click += new System.EventHandler(this.drawASquareToolStripMenuItem_Click);
+            // 
+            // drawALineToolStripMenuItem
+            // 
+            this.drawALineToolStripMenuItem.Name = "drawALineToolStripMenuItem";
+            this.drawALineToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.drawALineToolStripMenuItem.Text = "Draw a line";
+            this.drawALineToolStripMenuItem.Click += new System.EventHandler(this.drawALineToolStripMenuItem_Click);
+            // 
+            // drawACircleToolStripMenuItem
+            // 
+            this.drawACircleToolStripMenuItem.Name = "drawACircleToolStripMenuItem";
+            this.drawACircleToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.drawACircleToolStripMenuItem.Text = "Draw a circle";
+            this.drawACircleToolStripMenuItem.Click += new System.EventHandler(this.drawACircleToolStripMenuItem_Click);
+            // 
+            // dranAnEllipseToolStripMenuItem
+            // 
+            this.dranAnEllipseToolStripMenuItem.Name = "dranAnEllipseToolStripMenuItem";
+            this.dranAnEllipseToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.dranAnEllipseToolStripMenuItem.Text = "Dran an ellipse";
+            this.dranAnEllipseToolStripMenuItem.Click += new System.EventHandler(this.dranAnEllipseToolStripMenuItem_Click);
+            // 
+            // drawAPointToolStripMenuItem
+            // 
+            this.drawAPointToolStripMenuItem.Name = "drawAPointToolStripMenuItem";
+            this.drawAPointToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.drawAPointToolStripMenuItem.Text = "Draw a point";
+            this.drawAPointToolStripMenuItem.Click += new System.EventHandler(this.drawAPointToolStripMenuItem_Click);
+            // 
+            // changeColorToolStripMenuItem
+            // 
+            this.changeColorToolStripMenuItem.Name = "changeColorToolStripMenuItem";
+            this.changeColorToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.changeColorToolStripMenuItem.Text = "Change color";
+            this.changeColorToolStripMenuItem.Click += new System.EventHandler(this.changeColorToolStripMenuItem_Click);
+            // 
+            // resizeBiggerToolStripMenuItem
+            // 
+            this.resizeBiggerToolStripMenuItem.Name = "resizeBiggerToolStripMenuItem";
+            this.resizeBiggerToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.resizeBiggerToolStripMenuItem.Text = "Resize bigger";
+            this.resizeBiggerToolStripMenuItem.Click += new System.EventHandler(this.resizeBiggerToolStripMenuItem_Click);
+            // 
+            // resizeSmallerToolStripMenuItem
+            // 
+            this.resizeSmallerToolStripMenuItem.Name = "resizeSmallerToolStripMenuItem";
+            this.resizeSmallerToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.resizeSmallerToolStripMenuItem.Text = "Resize smaller";
+            this.resizeSmallerToolStripMenuItem.Click += new System.EventHandler(this.resizeSmallerToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
             // 
@@ -126,9 +228,9 @@
             // 
             // ShapesPanel
             // 
-            this.ShapesPanel.AutoSize = true;
             this.ShapesPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ShapesPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.ShapesPanel.Controls.Add(this.button1);
             this.ShapesPanel.Controls.Add(this.buttonPoint);
             this.ShapesPanel.Controls.Add(this.buttonEllipse);
             this.ShapesPanel.Controls.Add(this.buttonCircle);
@@ -138,8 +240,18 @@
             this.ShapesPanel.Controls.Add(this.buttonSelect);
             this.ShapesPanel.Location = new System.Drawing.Point(0, 23);
             this.ShapesPanel.Name = "ShapesPanel";
-            this.ShapesPanel.Size = new System.Drawing.Size(576, 38);
+            this.ShapesPanel.Size = new System.Drawing.Size(691, 38);
             this.ShapesPanel.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(579, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 31);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Create Group Shape";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonPoint
             // 
@@ -224,8 +336,25 @@
             this.ControlsPanel.Controls.Add(this.buttonColor);
             this.ControlsPanel.Location = new System.Drawing.Point(0, 64);
             this.ControlsPanel.Name = "ControlsPanel";
-            this.ControlsPanel.Size = new System.Drawing.Size(84, 301);
+            this.ControlsPanel.Size = new System.Drawing.Size(87, 295);
             this.ControlsPanel.TabIndex = 3;
+            // 
+            // buttonChangeName
+            // 
+            this.buttonChangeName.Location = new System.Drawing.Point(12, 242);
+            this.buttonChangeName.Name = "buttonChangeName";
+            this.buttonChangeName.Size = new System.Drawing.Size(69, 40);
+            this.buttonChangeName.TabIndex = 6;
+            this.buttonChangeName.Text = "Change name";
+            this.buttonChangeName.UseVisualStyleBackColor = true;
+            this.buttonChangeName.Click += new System.EventHandler(this.buttonChangeName_Click);
+            // 
+            // textBoxChangeName
+            // 
+            this.textBoxChangeName.Location = new System.Drawing.Point(13, 216);
+            this.textBoxChangeName.Name = "textBoxChangeName";
+            this.textBoxChangeName.Size = new System.Drawing.Size(65, 20);
+            this.textBoxChangeName.TabIndex = 5;
             // 
             // buttonResize
             // 
@@ -277,7 +406,9 @@
             // SelectionLabel
             // 
             this.SelectionLabel.AutoSize = true;
-            this.SelectionLabel.Location = new System.Drawing.Point(9, 428);
+            this.SelectionLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SelectionLabel.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.SelectionLabel.Location = new System.Drawing.Point(0, 526);
             this.SelectionLabel.Name = "SelectionLabel";
             this.SelectionLabel.Size = new System.Drawing.Size(69, 13);
             this.SelectionLabel.TabIndex = 4;
@@ -288,38 +419,25 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // textBoxChangeName
-            // 
-            this.textBoxChangeName.Location = new System.Drawing.Point(13, 216);
-            this.textBoxChangeName.Name = "textBoxChangeName";
-            this.textBoxChangeName.Size = new System.Drawing.Size(65, 20);
-            this.textBoxChangeName.TabIndex = 5;
-            // 
-            // buttonChangeName
-            // 
-            this.buttonChangeName.Location = new System.Drawing.Point(12, 242);
-            this.buttonChangeName.Name = "buttonChangeName";
-            this.buttonChangeName.Size = new System.Drawing.Size(69, 40);
-            this.buttonChangeName.TabIndex = 6;
-            this.buttonChangeName.Text = "Change name";
-            this.buttonChangeName.UseVisualStyleBackColor = true;
-            this.buttonChangeName.Click += new System.EventHandler(this.buttonChangeName_Click);
-            // 
             // PaintMainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(832, 450);
+            this.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.ClientSize = new System.Drawing.Size(832, 539);
             this.Controls.Add(this.SelectionLabel);
             this.Controls.Add(this.ControlsPanel);
             this.Controls.Add(this.ShapesPanel);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "PaintMainFrame";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Almost Paint";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintMainFrame_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PaintMainFrame_KeyDown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PaintMainFrame_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PaintMainFrame_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PaintMainFrame_MouseUp);
@@ -363,6 +481,18 @@
         private System.Windows.Forms.Button buttonResize2;
         private System.Windows.Forms.Button buttonChangeName;
         private System.Windows.Forms.TextBox textBoxChangeName;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem commandsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem drawARectangleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem drawASquareToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem drawALineToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem drawACircleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dranAnEllipseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem drawAPointToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeColorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resizeBiggerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resizeSmallerToolStripMenuItem;
     }
 }
 
