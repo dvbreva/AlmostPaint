@@ -175,10 +175,9 @@ namespace AlmostPaint
             Selection = 11;
         }
 
+        // logic behind buttons
         private void PaintMainFrame_MouseDown(object sender, MouseEventArgs e)
         {
-            
-          
             if (Selection == 1)
             {
                 foreach (IDraw drawnItem in ItemsList)
@@ -452,15 +451,17 @@ namespace AlmostPaint
             SaveFileDialog saveDialog = new SaveFileDialog
             {
                 Filter = "almostpaint file (*.ap)|*.ap",
-                Title = "Save an Almost Paint file",
-                FilterIndex = 2
+                Title = "Save an Almost Paint file"
             };
 
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
+
                 FileStream stream = new FileStream(saveDialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None);
+
                 binaryFormatter.Serialize(stream, ItemsList);
+
                 stream.Close();
             }
         }
@@ -473,9 +474,14 @@ namespace AlmostPaint
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             BinaryFormatter binaryFormatter = new BinaryFormatter();
+
             FileStream fileStream = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.Read, FileShare.None);
+
             ItemsList = (List<IDraw>)binaryFormatter.Deserialize(fileStream);
+
             fileStream.Close();
+
+            // setting it back
             Selection = 1;
             SelectedItem = null;
             Refresh();
@@ -484,11 +490,11 @@ namespace AlmostPaint
 
         private void newCanvasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // sets a new items list, makes sure there is no selected item, 
             this.ItemsList = new List<IDraw>();
             this.SelectedItem = null;
-            openFileDialog1.FileName = String.Empty;
-            saveFileDialog1.FileName = String.Empty;
             SelectionLabel.Text = "You have started a new project.";
+
             Refresh();
         }
 
