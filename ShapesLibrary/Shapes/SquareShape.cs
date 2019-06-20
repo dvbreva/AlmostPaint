@@ -151,5 +151,11 @@ namespace ShapesLibrary.Shapes
                 + "\n > Shape color : " + this.Color
                 + "\n > Shape coordinates (x,y) : " + "(" + this.X + "," + this.Y + ")";
         }
+
+        public IDrawable CopyShape()
+        {
+            SquareShape copiedSquareShape = new SquareShape(Color,X,Y,ShapeWidth,ShapeHeight,ShapeName);
+            return copiedSquareShape;
+        }
     }
 }

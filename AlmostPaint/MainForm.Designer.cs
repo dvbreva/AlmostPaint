@@ -70,6 +70,8 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.ShapesPanel.SuspendLayout();
             this.ControlsPanel.SuspendLayout();
@@ -327,6 +329,8 @@
             // 
             this.ControlsPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ControlsPanel.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.ControlsPanel.Controls.Add(this.button3);
+            this.ControlsPanel.Controls.Add(this.button2);
             this.ControlsPanel.Controls.Add(this.buttonChangeName);
             this.ControlsPanel.Controls.Add(this.textBoxChangeName);
             this.ControlsPanel.Controls.Add(this.buttonResize);
@@ -336,7 +340,7 @@
             this.ControlsPanel.Controls.Add(this.buttonColor);
             this.ControlsPanel.Location = new System.Drawing.Point(0, 64);
             this.ControlsPanel.Name = "ControlsPanel";
-            this.ControlsPanel.Size = new System.Drawing.Size(87, 295);
+            this.ControlsPanel.Size = new System.Drawing.Size(87, 380);
             this.ControlsPanel.TabIndex = 3;
             // 
             // buttonChangeName
@@ -419,6 +423,26 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(12, 288);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(69, 40);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Copy";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(12, 334);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(69, 40);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "Paste";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // PaintMainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -493,6 +517,8 @@
         private System.Windows.Forms.ToolStripMenuItem changeColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resizeBiggerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resizeSmallerToolStripMenuItem;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
     }
 }
 

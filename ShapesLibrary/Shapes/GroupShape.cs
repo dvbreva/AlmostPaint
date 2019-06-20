@@ -57,5 +57,11 @@ namespace ShapesLibrary.Shapes
         {
             throw new NotImplementedException();
         }
+
+
+        public IDrawable CopyShape()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

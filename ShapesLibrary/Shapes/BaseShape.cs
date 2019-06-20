@@ -1,7 +1,7 @@
 ﻿namespace ShapesLibrary.Shapes
 {
-    public abstract class BaseShape
+    public abstract class BaseShape 
     {
-        //to do
+       
     }
 }

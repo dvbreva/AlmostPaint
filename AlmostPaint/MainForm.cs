@@ -24,7 +24,7 @@ namespace AlmostPaint
         public Color NewSelectedColor;
         public Color selectionColor = Color.FromArgb(50, Color.Red);
         public List<IDrawable> ItemsList = new List<IDrawable>();
-
+        public IDrawable itemToCopy = null;
 
         public PaintMainFrame()
         {
@@ -108,6 +108,18 @@ namespace AlmostPaint
         {
             Selection = 13;
             SelectionLabel.Text = "You have selected to create a group shape.";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Selection = 14;
+            SelectionLabel.Text = "You have decided to copy a shape.";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Selection = 15;
+            SelectionLabel.Text = "You have decided to paste a shape.";
         }
 
 
@@ -359,6 +371,48 @@ namespace AlmostPaint
                 }
             }
 
+            if (Selection == 14)
+            {
+                    foreach (IDrawable drawnItem in ItemsList)
+                    {
+                        if (drawnItem is IShape)
+                        {
+                            if (((IShape)drawnItem).ContainsPoint(e.X, e.Y))
+                            {
+                                SelectedItem = drawnItem;
+                                itemToCopy = drawnItem;
+
+                                SelectionLabel.Text = "You have selected to copy a shape of type " + itemToCopy.GetType().Name;
+                                
+                                break;
+                            }
+                        }
+                    }
+                
+            }
+
+            if(Selection == 15)
+            {
+                 foreach (IDrawable drawnItem in ItemsList)
+                 {
+                     if (drawnItem is IShape)
+                     {
+                         if (((IShape)drawnItem).ContainsPoint(e.X, e.Y))
+                         {
+                             SelectedItem = drawnItem;
+                             itemToCopy = drawnItem;
+                             IDrawable pastedItem = itemToCopy.CopyShape();
+                             ItemsList.Add(pastedItem);
+
+                             SelectionLabel.Text = "You successfully pasted copy shape of type " + itemToCopy.GetType().Name;
+                             this.Refresh();
+                             break;
+                         }
+                     }
+                 }
+                 SelectedItem = null; 
+            }
+
             this.Refresh();
         }
 
@@ -440,6 +494,22 @@ namespace AlmostPaint
         // Различни начини на задаване на операциите от потребителя - от клавиатурата
         private void PaintMainFrame_KeyDown(object sender, KeyEventArgs e)
         {
+            // copy item 
+            if (e.KeyData.ToString() == "C, Shift, Control")
+            {
+                MessageBox.Show("Please click on the shape you want to copy.");
+                Selection = 14;
+                SelectionLabel.Text = "copied shape";
+            }
+
+            // paste item 
+            if (e.KeyData.ToString() == "V, Shift, Control")
+            {
+                MessageBox.Show("Please click over the shape you've copied to paste it.");
+                Selection = 15;
+                SelectionLabel.Text = "A successfull copy of the selected shape was made. Please use select tool to check out its properties.";
+            }
+
             // resize bigger
             if (e.KeyData.ToString() == "B, Control")
             {
@@ -563,7 +633,9 @@ namespace AlmostPaint
                 "Ctrl + D - allows you to open color dialog and set your desired value to the default color\n" +
                 "Ctrl + N - will load you a clear canvas\n" +
                 "Ctrl + 0 - will allow you to open a AlmostPaint file from file dialog\n" +
-                "Ctrl + S - will allow you to save your current canvas", "Help with keyboard events");
+                "Ctrl + S - will allow you to save your current canvas\n" +
+                "Ctrl + Shift + C - will allow you to copy a selected shape\n" +
+                "Ctrl + Shift + V - will allow you to paste a selected shape\n", "Help with keyboard events");
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -574,6 +646,8 @@ namespace AlmostPaint
                 "are satisfied you can also save your current canvas. \n\n" +
                 "Enjoy!", "Information about Almost Paint");
         }
+
+       
     }
 }
 

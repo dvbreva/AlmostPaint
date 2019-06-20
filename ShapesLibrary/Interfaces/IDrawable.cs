@@ -16,6 +16,8 @@ namespace ShapesLibrary.Interfaces
 
         string GetInfo();
 
+        IDrawable CopyShape();
+
        // void AddSelectionBorder();
     }
 }
